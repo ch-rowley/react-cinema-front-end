@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Price from "./Price.js";
 
 export default function SelectedSeats({ booking = [], price = 0 }) {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -17,7 +18,11 @@ export default function SelectedSeats({ booking = [], price = 0 }) {
           </span>
         ))}
       </div>
-      {!!booking.length && <div>Price: £{price.toFixed(2)}</div>}
+      {!!booking.length && (
+        <div>
+          Price: <Price>{price}</Price>
+        </div>
+      )}
     </>
   );
 }

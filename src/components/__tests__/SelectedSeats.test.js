@@ -27,14 +27,15 @@ describe("SelectedSeats", () => {
     expect(wrapper.text()).not.toContain("Price:");
   });
 
-  it("displays the price passed as a prop ", () => {
+  it("displays a price when seats are booked", () => {
     const wrapper = shallow(<SelectedSeats booking={[[1, 2]]} price={25.5} />);
-    expect(wrapper.text()).toContain("Price: £25.50");
+    expect(wrapper.text()).toContain("Price:");
+    expect(wrapper.find("Price").length).toBe(1);
   });
 
-  it("displays the price with added decimals", () => {
-    const wrapper = shallow(<SelectedSeats booking={[[1, 2]]} price={32} />);
-    expect(wrapper.text()).toContain("Price: £32.00");
+  it("passes the price as a prop to the Price component ", () => {
+    const wrapper = shallow(<SelectedSeats booking={[[1, 2]]} price={25.5} />);
+    expect(wrapper.find("Price").get(0).props.children).toBe(25.5);
   });
 
   it("displays one seat correctly", () => {
